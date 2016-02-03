@@ -17,8 +17,10 @@
                     
                     tc.cost = 50.00;
                     
-                    
-                    
+                    function update(){
+                        cc.tax = cc.add_tax ? cc.cost * 0.15 : 0.0;    
+                        cc.total = parseFloat(cc.cost) + cc.tax + cc.shipping.amount; 
+                    }
                     
                     tc.state_tax = [
                         {amount:4.00, name:"Alabama"},
@@ -73,7 +75,10 @@
                         {amount:4.00,	name:"Wyoming"},
                     ];
                     
-                    tc.tax = tc.state_tax[0];
+                    tc.tax = (tc.state_tax[0] / 100) * tc.cost;
+                    
+                    
+                    
                 }
 
             );
@@ -90,7 +95,7 @@
             </p>
             
             
-            <p>This is your total: </p>
+            <p>This is your total: {{ tc.cost | currency }}</p>
             
             <p>This is your tax:</p>
             

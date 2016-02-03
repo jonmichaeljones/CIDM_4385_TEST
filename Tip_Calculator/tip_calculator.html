@@ -12,13 +12,28 @@
                 function ($scope) {
                     
                     
-                    
-                    
-                    
                     $scope.cost = 50.00;
                     
+                    function update(){
+                        
                     
+                        $scope.tip_total = ($scope.tip.amount/100) *  parseFloat($scope.cost);
+                    
+                        
+                        
+                        $scope.tax = ($scope.state.amount/100);
+                        
+                        $scope.tax_total = $scope.tax + parseFloat($scope.cost);
+                        
+                        $scope.final_bill = $scope.tax_total + $scope.tip_total;
+                    }
                    
+                    
+                    $scope.$watch('cost', update);
+                    $scope.$watch('tax', update);
+                    $scope.$watch('tax_total', update);
+                    $scope.$watch('tip_total', update);
+                    $scope.$watch('final_bill', update);
                     
                     $scope.state_tax = [
                         {amount:4.00, name:"Alabama"},
@@ -75,7 +90,7 @@
                     
                     $scope.state = $scope.state_tax[0];
                     
-                    $scope.tax = $scope.state.amount/100;
+                    
                     
                     $scope.tip_amount = [
                         {amount:10.00, name:"10%"},
@@ -84,10 +99,6 @@
                     ];
                     
                     $scope.tip = $scope.tip_amount[0];
-                    
-                    $scope.tip_total = ($scope.tip.amount/100) * $scope.cost;
-                    
-                    $scope.final_bill = $scope.tax + $scope.tip_total + $scope.cost;
                 }
             );
    
@@ -109,13 +120,13 @@
             
             <p>This is your total: {{ cost | currency }}</p>
             
-            <p>This is your tip: {{ tax | currency }}</p>
+            <p>This is your tax: {{ tax | currency }}</p>
 
 
             <p>SELEC TIP AMOUNT:</p>
-            Tax: <select ng-model="tip" ng-options="s.name for s in tip_amount"></select>
+            Tip: <select ng-model="tip" ng-options="s.name for s in tip_amount"></select>
            
-           <p>This is your total with tax: {{ tax + cost | currency }}</p>
+           <p>This is your total with tax: {{ tax_total | currency }}</p>
            
             <p>This is your Final Total: {{ final_bill | currency }}  </p>
             

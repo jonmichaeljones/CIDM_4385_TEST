@@ -78,7 +78,6 @@
                     
                     
                 }
-
             );
    
         </script>
@@ -100,14 +99,17 @@
             <p>This is your total: {{ cost | currency }}</p>
             
             <p>This is your tax: {{( (state.amount*.01)*cost) | currency }}</p>
-            
-            
+
+
             <p>SELEC TIP AMOUNT:</p>
             <form>
                 <input type="radio" name="10%" value="10%" > 10%
                 <input type="radio" name="15%" value="15%"> 15%
                 <input type="radio" name="20%" value="20%"> 20%
             </form>
+           
+           <p>This is your total with tax: {{( (state.amount*.01)*cost) + cost | currency }}</p>
+           
             <p>This is your Final Total:  </p>
             
             

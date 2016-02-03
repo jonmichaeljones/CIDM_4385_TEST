@@ -76,7 +76,13 @@
                     $scope.state = $scope.state_tax[0];
                     
                     
+                    $scope.tip_amount = [
+                        {amount:10.00, name:"10%"},
+                        {amount:15.00, name:"15%"},
+                        {amount:20.00, name:"20%"}
+                    ];
                     
+                    $scope.tip = $scope.tip_amount[0];
                 }
             );
    
@@ -102,15 +108,11 @@
 
 
             <p>SELEC TIP AMOUNT:</p>
-            <form>
-                <input type="radio" name="10%" value="10%" > 10%
-                <input type="radio" name="15%" value="15%"> 15%
-                <input type="radio" name="20%" value="20%"> 20%
-            </form>
+            Tax: <select ng-model="tip" ng-options="s.name for s in tip_amount"></select>
            
            <p>This is your total with tax: {{( (state.amount*.01)*cost) + cost | currency }}</p>
            
-            <p>This is your Final Total:  </p>
+            <p>This is your Final Total: {{ (((state.amount*.01)*cost) + cost) +((tip.amount*.001)*cost) | currency }}  </p>
             
             
         </div>

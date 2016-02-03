@@ -23,7 +23,7 @@
                         
                         $scope.tax = ($scope.state.amount/100);
                         
-                        $scope.tax_total = $scope.tax + parseFloat($scope.cost);
+                        $scope.tax_total = ($scope.tax * parseFloat($scope.cost)) + parseFloat($scope.cost);
                         
                         $scope.final_bill = $scope.tax_total + $scope.tip_total;
                     }

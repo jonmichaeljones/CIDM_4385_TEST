@@ -18,9 +18,15 @@
                     tc.cost = 50.00;
                     
                     function update(){
-                        cc.tax = cc.add_tax ? cc.cost * 0.15 : 0.0;    
-                        cc.total = parseFloat(cc.cost) + cc.tax + cc.shipping.amount; 
+                        cc.tax = ((cc.tax / 100) * cc.cost);
+                        //cc.total = parseFloat(cc.cost) + cc.tax + cc.shipping.amount; 
                     }
+                    
+                    //$scope.$watch('cc.cost', update);
+                    $scope.$watch('cc.tax', update);
+                    
+                    $scope.$watch('cc.cost + cc.tax', update);
+                    
                     
                     tc.state_tax = [
                         {amount:4.00, name:"Alabama"},
@@ -75,7 +81,7 @@
                         {amount:4.00,	name:"Wyoming"},
                     ];
                     
-                    tc.tax = (tc.state_tax[0] / 100) * tc.cost;
+                    tc.tax = tc.state_tax[0];
                     
                     
                     
@@ -91,13 +97,14 @@
             <h1>TIP CALULATOR</h1>
             <p>
                 Cost: <input type="text" ng-model="tc.cost" placeholder="cost" /><br/>
-                Shipping: <select ng-model="tc.tax" ng-options="s.name for s in tc.state_tax"></select>
+                Tax: <select ng-model="tc.tax" ng-options="s.name for s in tc.state_tax"></select>
+                
             </p>
             
             
             <p>This is your total: {{ tc.cost | currency }}</p>
             
-            <p>This is your tax:</p>
+            <p>This is your tax: {{ tc.tax | currency }}</p>
             
             
             <p>SELEC TIP AMOUNT:</p>

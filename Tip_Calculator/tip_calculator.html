@@ -1,12 +1,44 @@
 <html ng-app="TipCalculator">
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js?"></script>
-        <scrip src="/Tip_Calculator/TipCalculator.js">
+        <script>
+            
+            var myModule = angular.Module('TipCalculator', []);
+            
+            myModule.controller('TipCalculator',
+            
+            function($scope) {
+                
+                var tc= this;
+                
+                
+                
+                
+                
+                
+            }
             
             
             
             
-        </scrip>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            )
+            
+            
+            
+            
+            
+            
+        </script>
     </head>
     <body>
         
@@ -70,6 +102,13 @@
                     	<option value="WY">Wyoming</option>
                     </select>
                 <input type="submit">
+            </form>
+            
+            <p>SELEC TAX AMOUNT</p>
+            <form>
+                <input type="radio" name="10%" value="10%" > 10%
+                <input type="radio" name="15%" value="15%"> 15%
+                <input type="radio" name="20%" value="20%"> 20%
             </form>
             
         </div>
